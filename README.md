@@ -1,11 +1,15 @@
 # monstercatVisualizer
-Ein auf HTML/JS basierter Audio-Visualizer 
+An HTML/JS-based audio visualizer
 
-Dieser Visualizer soll den in den offiziellen Monstercat Videos ähneln.
-Dazu wird das das Projekt https://github.com/hvianna/audioMotion-analyzer genutzt.
+This visualizer is intended to resemble the one in the official Monstercat videos.
+The project https://github.com/hvianna/audioMotion-analyzer is used for this.
 
-Um das ganze zu testen, musst du eine Audiofile hinzufügen und den Pfad in der HTML ändern. Ansonsten reicht es, die Audio-Datei "Podcast.mp3" zu benennen
+To test it, you need to add an audio file and change the path in the HTML. Otherwise, simply rename the audio file "Podcast.mp3."
+
+The videos below are not pre-rendered.
 
 
 https://github.com/user-attachments/assets/b54f8f84-5bd9-48cb-869f-5d32c853ac63
+
+https://github.com/user-attachments/assets/37b08c23-96d1-4b92-b6e3-7c34084d86ed
 
