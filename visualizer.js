@@ -15,9 +15,9 @@ if (cssSmooth && frameRate >= 60) {
 
 for (let x = 0; x < 63; x++) {
     if (cssSmooth) {
-        container.innerHTML += `<div id=bar-${x} class="bar" style="width: 2px; height:17px; margin-top: 8px; background: white; transition: width ${(1000 / frameRate) / 1000}s ease; box-shadow: 2px 2px 10px black"></div>`
+        container.innerHTML += `<div id=bar-${x} class="bar" style="width: 2px; height:17px; margin-top: 8px; background: white; transition: width ${(1000 / frameRate) / 1000}s ease, background 1s ease; box-shadow: 2px 2px 10px black"></div>`
     } else {
-        container.innerHTML += `<div id=bar-${x} class="bar" style="width: 2px; height:17px; margin-top: 8px; background: white; box-shadow: 2px 2px 10px black";></div>`
+        container.innerHTML += `<div id=bar-${x} class="bar" style="width: 2px; height:17px; margin-top: 8px; background: white; transition: background 1s ease; box-shadow: 2px 2px 10px black";></div>`
     }
 }
 
@@ -98,3 +98,11 @@ const audioMotion = new AudioMotionAnalyzer(
         }
     }
 );
+
+function changeColor(genre) {
+    if (!settings.genreColorsActive) return; // If genre colors are not active, do nothing
+    let color = settings.genreColors[genre] || settings.genreColors.Default; // Default to white if genre not found
+    document.querySelectorAll(".bar").forEach(bar => {
+        bar.style.background = color;
+    });
+}

@@ -27,7 +27,7 @@ async function getSong() {
     await sleep(100)
     typeOut(document.getElementById("artist"), 400)
     await sleep(100)
-    typeOut(document.getElementById("additional"), 400)
+    typeOut(document.getElementById("additional"), 400, true)
 }
 
 async function play() {
@@ -35,40 +35,36 @@ async function play() {
 
     document.getElementById("audio").src = `${song.Audio}`
 
+    changeColor(song.Genre)
+
     await sleep(1000)
 
     document.getElementById("artistTest").innerText = song.Artist
+    document.getElementById("artistTest").style.fontSize = "111px"
+
+
+    let isOk = false
+    let fontSize = 111
+    while (!isOk) {
+        if (document.getElementById("artistTest").offsetWidth > 1348) {
+            document.getElementById("artistTest").style.fontSize = `${fontSize--}px`
+        } else {
+            isOk = true
+        }
+    }
 
 
     if (song.Additional) {
-        if (document.getElementById("artistTest").offsetWidth > 1348) {
-            document.getElementById("artist").style.fontSize = "73px"
-            document.getElementById("artist").style.top = "581px"
-            document.getElementById("title").style.top = "661px"
-            document.getElementById("additional").style.top = "715px"
-        } else {
-            document.getElementById("artist").style.top = "572px"
-            document.getElementById("artist").style.fontSize = "93px"
-            document.getElementById("title").style.top = "669px"
-            document.getElementById("additional").style.top = "721px"
-        }
+        document.getElementById("artist").style.fontSize = (fontSize < 111 ? fontSize : 93) + "px"
     } else {
-        if (document.getElementById("artistTest").offsetWidth > 1348) {
-            document.getElementById("artist").style.fontSize = "80px"
-            document.getElementById("artist").style.top = "605px"
-            document.getElementById("title").style.top = "691px"
-        } else {
-            document.getElementById("artist").style.top = "587px"
-            document.getElementById("artist").style.fontSize = "111px"
-            document.getElementById("title").style.top = "703px"
-        }
+        document.getElementById("artist").style.fontSize = (fontSize < 111 ? fontSize : 111) + "px"
     }
+
+    typeIn(document.getElementById("additional"), (song.Additional ? song.Additional : ""), 800, true)
 
     typeIn(document.getElementById("artist"), song.Artist, 800)
     await sleep(100)
     typeIn(document.getElementById("title"), song.Title, 800)
-    await sleep(100)
-    typeIn(document.getElementById("additional"), (song.Additional ? song.Additional : ""), 800)
 }
 
 document.getElementById("audio").oncanplaythrough = () => {
@@ -89,20 +85,26 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function typeOut(element, duration) {
+async function typeOut(element, duration, isAdditional) {
     // like a typewriter effect, type out the text in the element from end to start
     const text = element.innerText;
 
     for (let i = 0; i <= text.length; i++) {
         element.innerText = text.slice(0, text.length - i);
+        if(element.innerText === "" && !isAdditional) {
+            element.innerText = "‎";
+        }
         await new Promise(resolve => setTimeout(resolve, duration / text.length));
     }
 }
 
-async function typeIn(element, text, duration) {
+async function typeIn(element, text, duration, isAdditional) {
     // like a typewriter effect, type in the text in the element from start to end
     for (let i = 0; i <= text.length; i++) {
         element.innerText = text.slice(0, i);
+        if(element.innerText === "" && !isAdditional) {
+            element.innerText = "‎";
+        }
         await new Promise(resolve => setTimeout(resolve, duration / text.length));
     }
 }
