@@ -1,0 +1,35 @@
+@font-face {
+    font-family: "nexa";
+    src: url("./fonts/bold.woff") format("woff");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "nexa";
+    src: url("./fonts/regular.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+.bold {
+    font-family: "nexa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: -9.3px;
+    font-size: 111px;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.regular {
+    font-family: "nexa", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 53px;
+    letter-spacing: -1.1px;
+    text-transform: uppercase;
+    color: #ffffff;
+}

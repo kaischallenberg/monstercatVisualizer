@@ -15,9 +15,9 @@ if (cssSmooth && frameRate >= 60) {
 
 for (let x = 0; x < 63; x++) {
     if (cssSmooth) {
-        container.innerHTML += `<div id=bar-${x} class="bar" style="width: 2px; height:10px; margin: 3px; background: white; transition: width ${(1000 / frameRate) / 1000}s ease;"></div>`
+        container.innerHTML += `<div id=bar-${x} class="bar" style="width: 2px; height:17px; margin-top: 8px; background: white; transition: width ${(1000 / frameRate) / 1000}s ease; box-shadow: 2px 2px 10px black"></div>`
     } else {
-        container.innerHTML += `<div id=bar-${x} class="bar" style="width: 2px; height:10px; margin: 3px; background: white; box-shadow: 2px 2px 10px black";></div>`
+        container.innerHTML += `<div id=bar-${x} class="bar" style="width: 2px; height:17px; margin-top: 8px; background: white; box-shadow: 2px 2px 10px black";></div>`
     }
 }
 
@@ -29,7 +29,7 @@ setInterval(() => {
 
 const audioMotion = new AudioMotionAnalyzer(
     null, {
-        source: document.getElementById('audio'),
+        source: document.getElementById("audio"),
         useCanvas: false,
         linearAmplitude: true,
         maxDecibels: -23,
@@ -90,9 +90,9 @@ const audioMotion = new AudioMotionAnalyzer(
             }
 
             for (let x = 0; x < barPoints.length; x++) {
-                document.getElementById(`bar-${x * 2}`).style.width = `${barPoints[x] * 200 + 2}px`
+                document.getElementById(`bar-${x * 2}`).style.width = `${barPoints[x] * 375 + 2}px`
                 if (x != 31) {
-                    document.getElementById(`bar-${x * 2 + 1}`).style.width = `${((barPoints[x] + barPoints[x + 1]) / 2) * 200 + 2}px`
+                    document.getElementById(`bar-${x * 2 + 1}`).style.width = `${((barPoints[x] + barPoints[x + 1]) / 2) * 375 + 2}px`
                 }
             }
         }
