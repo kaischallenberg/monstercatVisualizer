@@ -1,5 +1,9 @@
 let settings = {
-    bgImage: "./bg/1.png", // Select a background image from the bg folder
+    background: {
+        active: false,
+        image: "./bg/2.jpg", // Path to the background image
+    },
+    particles: true, // Set to true to enable particles, false to disable
     genreColorsActive: true, // Set to true to enable genre colors, false to disable
     genreColors: {
         Default: "#FFFFFF", // Default color for genres not specified or when genre colors are disabled

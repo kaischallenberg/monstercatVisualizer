@@ -12,6 +12,12 @@
     font-style: normal;
 }
 
+canvas {
+    width: 1920px;
+    height: 1080px;
+    position: absolute;
+}
+
 .bold {
     font-family: "nexa", sans-serif;
     font-optical-sizing: auto;

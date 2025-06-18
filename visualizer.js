@@ -8,7 +8,6 @@ let frameRate = 120
 let cssSmooth = true
 
 
-
 if (cssSmooth && frameRate >= 60) {
     frameRate = 60
 }
@@ -26,6 +25,8 @@ let c = 0
 setInterval(() => {
     c = 0
 }, 1000 / frameRate)
+
+let energyLow = 0
 
 const audioMotion = new AudioMotionAnalyzer(
     null, {
@@ -50,6 +51,8 @@ const audioMotion = new AudioMotionAnalyzer(
             //let barPoints = [0, 1, 2, 3, 5, 7, 9, 12, 16, 21, 28, 35, 44, 55, 69, 86, 107, 133, 166, 221, 273, 326, 401, 471, 548, 618, 689, 774, 851, 927, 1001, 1078]            
             let barPoints = [0, 1, 2, 3, 5, 7, 9, 10, 12, 14, 17, 20, 23, 28, 34, 41, 49, 60, 74, 96, 118, 140, 171, 200, 232, 260, 290, 325, 357, 388, 419, 450]
             //let barPoints = [0, 17, 28, 46, 59, 75, 97, 124, 140, 158, 179, 203, 229, 260, 294, 332, 376, 426, 482, 545, 617, 698, 789, 893, 1011, 1144, 1294, 1464, 1657, 1875, 2121, 2400]
+
+            particleSpeed(Math.max(tempBars[barPoints[4]].value[0], tempBars[barPoints[5]].value[0]) * 100); 
 
 
             for (let x = 0; x < barPoints.length; x++) {
@@ -99,10 +102,43 @@ const audioMotion = new AudioMotionAnalyzer(
     }
 );
 
+document.getElementById("audio").onplay = () => {
+    console.log("Audio started playing");
+    energyLow = 0; // Reset energy low counter when audio starts playing
+}
+
+setInterval(() => {
+    if (document.getElementById("audio").paused || document.getElementById("audio").currentTime < 10) {
+        energyLow = 0; // Reset energy low counter when audio is paused
+        return
+    };
+
+    if(audioMotion._energy.val == 0){
+        energyLow++;
+        console.log("Energy low: " + (10 - energyLow));
+        if(energyLow > 10) {
+            energyLow = 0;
+            console.log("Energy too low, stopping song");
+            getSong();
+            return;
+        }
+    }
+}, 100);
+
 function changeColor(genre) {
-    if (!settings.genreColorsActive) return; // If genre colors are not active, do nothing
-    let color = settings.genreColors[genre] || settings.genreColors.Default; // Default to white if genre not found
-    document.querySelectorAll(".bar").forEach(bar => {
-        bar.style.background = color;
-    });
+    if (settings.genreColorsActive){
+        let color = settings.genreColors[genre] || settings.genreColors.Default; // Default to white if genre not found
+        document.querySelectorAll(".bar").forEach(bar => {
+            bar.style.background = color;
+        });
+    }
+
+    particleColor = settings.genreColors[genre] || settings.genreColors.Default; // Default to white if genre not found
+    
+}
+
+// Schreibe eine Funktion, die den Prozentwert abändert: 0 => 0,5, 1 => 5
+function particleSpeed(percent) {
+    percent = Math.max(0, Math.min(100, percent)); // Ensure percent is between 0 and 100
+    animationSpeed = (percent / 100) * 5 + 0.5; // Convert to range 0.5 to 5
 }
