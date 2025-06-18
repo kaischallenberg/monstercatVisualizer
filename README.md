@@ -19,3 +19,5 @@ You can also activate particles in the settings
 
 https://github.com/user-attachments/assets/5a030c3d-f606-41e0-9d37-6a91ed12bfee
 
+**Disclaimer: This version is not official and was not commissioned by Monstercat or the artists. It serves only as a learning project.**
+
