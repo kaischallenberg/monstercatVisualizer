@@ -15,3 +15,7 @@ The videos below are not pre-rendered.
 
 https://github.com/user-attachments/assets/37b08c23-96d1-4b92-b6e3-7c34084d86ed
 
+You can also activate particles in the settings
+
+https://github.com/user-attachments/assets/5a030c3d-f606-41e0-9d37-6a91ed12bfee
+
