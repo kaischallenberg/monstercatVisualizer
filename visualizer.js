@@ -5,7 +5,7 @@ let container = document.getElementById("visualizer");
 let smoothWidth = 7
 let smoothDivi = 5
 let frameRate = 120
-let cssSmooth = true
+let cssSmooth = false
 
 
 if (cssSmooth && frameRate >= 60) {
@@ -35,7 +35,7 @@ const audioMotion = new AudioMotionAnalyzer(
         linearAmplitude: true,
         maxDecibels: -23,
         minDecibels: -90,
-        smoothing: 0.8,
+        smoothing: 0.7,
         frequencyScale: "bark",
         onCanvasDraw: instance => {
             c++
