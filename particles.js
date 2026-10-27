@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2025 Kai Schallenberg
+
 const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
 
